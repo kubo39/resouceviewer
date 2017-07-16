@@ -1,0 +1,12 @@
+{
+	"name": "resource-viewer",
+	"authors": [
+		"kubo39"
+	],
+	"dependencies": {
+		"gtk-d": "~>3.6.5",
+		"resusage": "~>0.2.7"
+	},
+	"description": "A minimal D application.",
+	"license": "MIT"
+}
