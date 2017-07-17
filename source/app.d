@@ -5,6 +5,9 @@ import gtk.ApplicationWindow;
 import gtk.Box;
 import gtk.Image;
 import gtk.Label;
+import gtk.Menu;
+import gtk.MenuBar;
+import gtk.MenuItem;
 
 import resusageviewer.notebook;
 import resusageviewer.sysinfo;
@@ -14,6 +17,18 @@ void updateWindow(DisplaySysinfo info)
 {
     info.updateCPUDisplay();
     info.updateRAMDisplay();
+}
+
+MenuItem createImageMenuItem(string label, string icon)
+{
+    auto item = new MenuItem;
+    auto box = new Box(Orientation.HORIZONTAL, 6);
+    auto image = new Image(icon);
+
+    box.add(image);
+    box.add(new Label(label));
+    item.add(box);
+    return item;
 }
 
 class DisplayResusage : ApplicationWindow
@@ -38,6 +53,16 @@ void main(string[] args)
             auto displayTab  = new DisplaySysinfo(note, window);
 
             auto verticalBox = new Box(GtkOrientation.VERTICAL, 0);
+            auto menuBar = new MenuBar;
+            auto menu = new Menu;
+            auto file = new MenuItem("_File");
+            auto quit = createImageMenuItem("Quit", "application-exit");
+
+            menu.append(quit);
+            file.setSubmenu(menu);
+            menuBar.append(file);
+
+            verticalBox.packStart(menuBar, false, false, 0);
             verticalBox.packStart(note.notebook, true, true, 0);
 
             window.add(verticalBox);
@@ -47,6 +72,10 @@ void main(string[] args)
                     updateWindow(displayTab);
                     return true;
             });
+
+            quit.addOnActivate((MenuItem _) {
+                    app.quit();
+                });
         });
     application.run(args);
 }
