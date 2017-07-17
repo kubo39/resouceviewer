@@ -109,7 +109,7 @@ class DisplaySysinfo
         }
         ram.setText(text);
         if (totalRAM != 0) {
-            ram.setFraction(usedRAM.to!double / totalRAM.to!double);
+            ram.setFraction(sysMemInfo.usedRAMPercent / 100.0);
         } else {
             ram.setFraction(0.0);
         }
