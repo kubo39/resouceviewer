@@ -11,8 +11,10 @@ $ curl -fsS https://dlang.org/install.sh | bash -s dmd
 $ source ~/dlang/dmd-2.074.1/activate  # if 2.074.1 == latest
 ```
 
-## Running
+## Run
 
 ```console
+$ git clone https://github.com/kubo39/resourceviewer
+$ cd resourceviewer
 $ dub run
 ```
