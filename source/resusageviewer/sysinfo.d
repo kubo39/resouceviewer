@@ -94,18 +94,18 @@ class DisplaySysinfo
     void updateRAMDisplay()
     {
         sysMemInfo.update();
-        auto totalRAM = sysMemInfo.totalRAM;
-        auto usedRAM = sysMemInfo.usedRAM;
+        auto totalRAM = sysMemInfo.totalRAM / 1024.0;
+        auto usedRAM = sysMemInfo.usedRAM / 1024;
 
         string text;
         if (totalRAM < 100000) {
-            text = format("%d / %d kB", usedRAM, totalRAM);
+            text = format("%d / %d kB", usedRAM, totalRAM.to!long);
         } else if (totalRAM < 10000000) {
-            text = format("%g / %d MB", usedRAM / 1024.0, totalRAM / 1024);
+            text = format("%g / %d MB", usedRAM / 1024.0, (totalRAM / 1024).to!long);
         } else if (totalRAM < 10000000000) {
-            text = format("%g / %d GB", usedRAM / 1048576.0, totalRAM / 1048576);
+            text = format("%g / %d GB", usedRAM / 1048576.0, (totalRAM / 1048576).to!long);
         } else {
-            text = format("%g / %d TB", usedRAM / 1073741824.0, totalRAM / 1073741824);
+            text = format("%g / %d TB", usedRAM / 1073741824.0, (totalRAM / 1073741824).to!long);
         }
         ram.setText(text);
         if (totalRAM != 0) {
