@@ -70,7 +70,7 @@ class DisplaySysinfo
         cpu.setMarginLeft(5);
         cpu.setShowText(true);
         double percent = cpuWatcher.current();
-        cpu.setText(format("%s%%", percent));
+        cpu.setText(format("%g%%", percent));
         cpu.setFraction(percent / 100);
         verticalLayout.add(cpu);
 
@@ -95,11 +95,11 @@ class DisplaySysinfo
     {
         sysMemInfo.update();
         auto totalRAM = sysMemInfo.totalRAM / 1024.0;
-        auto usedRAM = sysMemInfo.usedRAM / 1024;
+        auto usedRAM = sysMemInfo.usedRAM / 1024.0;
 
         string text;
         if (totalRAM < 100000) {
-            text = format("%d / %d kB", usedRAM, totalRAM.to!long);
+            text = format("%g / %d kB", usedRAM, totalRAM.to!long);
         } else if (totalRAM < 10000000) {
             text = format("%g / %d MB", usedRAM / 1024.0, (totalRAM / 1024).to!long);
         } else if (totalRAM < 10000000000) {
