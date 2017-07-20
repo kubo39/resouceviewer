@@ -9,7 +9,6 @@ import gtk.Menu;
 import gtk.MenuBar;
 import gtk.MenuItem;
 
-import resusageviewer.notebook;
 import resusageviewer.sysinfo;
 
 
@@ -48,10 +47,8 @@ void main(string[] args)
                                        GApplicationFlags.FLAGS_NONE);
     application.addOnActivate(delegate void(GioApplication app) {
             auto window = new DisplayResusage(application);
-            auto note = new NoteBook;
 
-            auto displayTab  = new DisplaySysinfo(note, window);
-
+            auto displayTab  = new DisplaySysinfo(window);
             auto verticalBox = new Box(GtkOrientation.VERTICAL, 0);
             auto menuBar = new MenuBar;
             auto menu = new Menu;
@@ -63,7 +60,7 @@ void main(string[] args)
             menuBar.append(file);
 
             verticalBox.packStart(menuBar, false, false, 0);
-            verticalBox.packStart(note.notebook, true, true, 0);
+            verticalBox.packStart(displayTab.scroll, true, true, 0);
 
             window.add(verticalBox);
             window.showAll();

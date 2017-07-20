@@ -14,8 +14,6 @@ import gtk.Window;
 import resusage.cpu;
 import resusage.memory;
 
-import resusageviewer.notebook;
-
 
 void createHeader(string labelText, Box parentLayout)
 {
@@ -49,13 +47,14 @@ class DisplaySysinfo
     SystemMemInfo sysMemInfo;
     ProgressBar cpu;
     ProgressBar ram;
+    ScrolledWindow scroll;
 
-    this(NoteBook note, Window win) {
+    this(Window win) {
         cpuWatcher = new SystemCPUWatcher;
         sysMemInfo = systemMemInfo();
 
         auto verticalLayout = new Box(Orientation.VERTICAL, 0);
-        auto scroll = new ScrolledWindow;
+        scroll = new ScrolledWindow;
 
         verticalLayout.setSpacing(5);
 
@@ -79,7 +78,6 @@ class DisplaySysinfo
         verticalLayout.packStart(nonGraphLayout, false, false, 15);
 
         scroll.add(verticalLayout);
-        note.createTab("System usage", scroll);
 
         updateRAMDisplay();
     }
