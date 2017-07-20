@@ -58,10 +58,6 @@ class DisplaySysinfo
 
         verticalLayout.setSpacing(5);
 
-        auto nonGraphLayout = new Grid;
-        nonGraphLayout.setColumnHomogeneous(true);
-        nonGraphLayout.setMarginRight(5);
-
         verticalLayout.packStart(new Label("Current CPU usage"), false, false, 7);
 
         cpu = new ProgressBar;
@@ -73,9 +69,13 @@ class DisplaySysinfo
         cpu.setFraction(percent / 100);
         verticalLayout.add(cpu);
 
+        auto layout1 = new Grid;
+        layout1.setColumnHomogeneous(true);
+        layout1.setMarginRight(5);
+
         createHeader("Memory Usage", verticalLayout);
-        ram = createProgressBar(nonGraphLayout, 0, "RAM", "");
-        verticalLayout.packStart(nonGraphLayout, false, false, 15);
+        ram = createProgressBar(layout1, 0, "RAM", "");
+        verticalLayout.packStart(layout1, false, false, 15);
 
         scroll.add(verticalLayout);
 
@@ -92,6 +92,7 @@ class DisplaySysinfo
     void updateRAMDisplay()
     {
         sysMemInfo.update();
+
         auto totalRAM = sysMemInfo.totalRAM / 1024.0;
         auto usedRAM = sysMemInfo.usedRAM / 1024.0;
 
@@ -113,4 +114,3 @@ class DisplaySysinfo
         }
     }
 }
-
