@@ -64,9 +64,6 @@ class DisplaySysinfo
         cpu.setMarginRight(5);
         cpu.setMarginLeft(5);
         cpu.setShowText(true);
-        double percent = cpuWatcher.current();
-        cpu.setText(format("%g%%", percent));
-        cpu.setFraction(percent / 100);
         verticalLayout.add(cpu);
 
         auto layout1 = new Grid;
@@ -77,9 +74,10 @@ class DisplaySysinfo
         ram = createProgressBar(layout1, 0, "RAM", "");
         verticalLayout.packStart(layout1, false, false, 15);
 
-        scroll.add(verticalLayout);
-
+        updateCPUDisplay();
         updateRAMDisplay();
+
+        scroll.add(verticalLayout);
     }
 
     void updateCPUDisplay()
