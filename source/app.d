@@ -42,7 +42,7 @@ class DisplayResusage : ApplicationWindow
 
 void main(string[] args)
 {
-    auto application = new Application("org.gtkd.resourceeviewer", GApplicationFlags.FLAGS_NONE);
+    auto application = new Application("org.gtkd.resourceviewer", GApplicationFlags.FLAGS_NONE);
     application.addOnActivate(delegate void(GioApplication app) {
         auto window = new DisplayResusage(application);
 
