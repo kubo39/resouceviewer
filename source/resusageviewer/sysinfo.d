@@ -72,6 +72,7 @@ class DisplaySysinfo
         ram = createProgressBar(layout1, 0, "RAM", "");
         verticalLayout.packStart(layout1, false, false, 15);
 
+        // インスタンス生成時に一度初期化して表示しておく
         updateCPUDisplay();
         updateRAMDisplay();
 
@@ -80,18 +81,24 @@ class DisplaySysinfo
 
     void updateCPUDisplay()
     {
+        // 現在のCPU使用率を取得
         double percent = cpuWatcher.current();
+
+        // 使用率を表示
         cpu.setText(format("%s%%", percent));
         cpu.setFraction(percent / 100.0);
     }
 
+    // RAMの表示を更新
     void updateRAMDisplay()
     {
+        // 先にメモリの情報を更新しておく
         sysMemInfo.update();
 
         auto totalRAM = sysMemInfo.totalRAM / 1024.0;
         auto usedRAM = sysMemInfo.usedRAM / 1024.0;
 
+        // RAMの値に合わせて表示を変える
         string text;
         if (totalRAM < 100_000)
         {
@@ -110,6 +117,8 @@ class DisplaySysinfo
             text = format("%g / %d TB", usedRAM / 1_073_741_824.0, (totalRAM / 1_073_741_824).to!long);
         }
         ram.setText(text);
+
+        // メモリ使用量をfractionの形で表示
         if (totalRAM != 0)
         {
             ram.setFraction(sysMemInfo.usedRAMPercent / 100.0);

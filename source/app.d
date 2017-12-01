@@ -63,8 +63,10 @@ void main(string[] args)
         window.add(verticalBox);
         window.showAll();
 
+        // glib_timeout_add相当。 1秒間隔でウィンドウを更新。
         new Timeout(1000, () { updateWindow(displayTab); return true; });
 
+        // quitボタンが押されたら終了。
         quit.addOnActivate((MenuItem _) { app.quit(); });
     });
     application.run(args);
