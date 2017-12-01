@@ -63,7 +63,7 @@ void main(string[] args)
         window.add(verticalBox);
         window.showAll();
 
-        // glib_timeout_add相当。 1秒間隔でウィンドウを更新。
+        // g_timeout_add_seconds相当。 1秒間隔でウィンドウを更新。
         new Timeout(() { updateWindow(displayTab); return true; }, 1);
 
         // quitボタンが押されたら終了。
