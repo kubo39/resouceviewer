@@ -1,8 +1,5 @@
 module resusageviewer.sysinfo;
 
-import std.conv : to;
-import std.format;
-
 import gtk.Box;
 import gtk.CheckButton;
 import gtk.Grid;
@@ -13,6 +10,8 @@ import gtk.Widget;
 import gtk.Window;
 import resusage.cpu;
 import resusage.memory;
+import std.conv : to;
+import std.format;
 
 void createHeader(string labelText, Box parentLayout)
 {
@@ -94,21 +93,21 @@ class DisplaySysinfo
         auto usedRAM = sysMemInfo.usedRAM / 1024.0;
 
         string text;
-        if (totalRAM < 100000)
+        if (totalRAM < 100_000)
         {
             text = format("%g / %d kB", usedRAM, totalRAM.to!long);
         }
-        else if (totalRAM < 10000000)
+        else if (totalRAM < 10_000_000)
         {
             text = format("%g / %d MB", usedRAM / 1024.0, (totalRAM / 1024).to!long);
         }
-        else if (totalRAM < 10000000000)
+        else if (totalRAM < 10_000_000_000)
         {
-            text = format("%g / %d GB", usedRAM / 1048576.0, (totalRAM / 1048576).to!long);
+            text = format("%g / %d GB", usedRAM / 1_048_576.0, (totalRAM / 1_048_576).to!long);
         }
         else
         {
-            text = format("%g / %d TB", usedRAM / 1073741824.0, (totalRAM / 1073741824).to!long);
+            text = format("%g / %d TB", usedRAM / 1_073_741_824.0, (totalRAM / 1_073_741_824).to!long);
         }
         ram.setText(text);
         if (totalRAM != 0)
