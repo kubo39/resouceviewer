@@ -27,14 +27,14 @@ void createHeader(string labelText, Box parentLayout)
     parentLayout.packStart(grid, false, false, 15);
 }
 
-ProgressBar createProgressBar(Grid nonGraphLayout, uint line, string label, string text)
+ProgressBar createProgressBar(Grid layout, uint line, string label, string text)
 {
     auto p = new ProgressBar;
     auto l = new Label(label);
     p.setText(text);
     p.setShowText(true);
-    nonGraphLayout.attach(l, 0, line, 1, 1);
-    nonGraphLayout.attach(p, 1, line, 11, 1);
+    layout.attach(l, 0, line, 1, 1);
+    layout.attach(p, 1, line, 11, 1);
     return p;
 }
 
