@@ -1,11 +1,14 @@
-# Resource Viewer
+# リソースビューワ
 
-This is sample app for [gtk-d](https://gtkd.org/). Getting system resource usage by [resusage](https://github.com/FreeSlave/resusage).
+[gtk-d](https://gtkd.org/)のサンプルアプリです。リソース情報の取得は[resusage](https://github.com/FreeSlave/resusage)を使用しています。
 
-## Run
+## 起動
+
+以下のとおりにコマンドを実行してください。
 
 ```console
 $ git clone https://github.com/kubo39/resourceviewer
 $ cd resourceviewer
 $ dub run
 ```
+
