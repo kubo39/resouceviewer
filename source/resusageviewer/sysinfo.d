@@ -99,23 +99,25 @@ class DisplaySysinfo
         auto usedRAM = sysMemInfo.usedRAM / 1024.0;
 
         // RAMの値に合わせて表示を変える
-        string text;
-        if (totalRAM < 100_000)
-        {
-            text = format("%g / %d kB", usedRAM, totalRAM.to!long);
-        }
-        else if (totalRAM < 10_000_000)
-        {
-            text = format("%g / %d MB", usedRAM / 1024.0, (totalRAM / 1024).to!long);
-        }
-        else if (totalRAM < 10_000_000_000)
-        {
-            text = format("%g / %d GB", usedRAM / 1_048_576.0, (totalRAM / 1_048_576).to!long);
-        }
-        else
-        {
-            text = format("%g / %d TB", usedRAM / 1_073_741_824.0, (totalRAM / 1_073_741_824).to!long);
-        }
+        auto text = () @trusted {
+            if (totalRAM < 100_000)
+            {
+                return format("%g / %d kB", usedRAM, totalRAM.to!long);
+            }
+            else if (totalRAM < 10_000_000)
+            {
+                return format("%g / %d MB", usedRAM / 1024.0, (totalRAM / 1024).to!long);
+            }
+            else if (totalRAM < 10_000_000_000)
+            {
+                return format("%g / %d GB", usedRAM / 1_048_576.0, (totalRAM / 1_048_576).to!long);
+            }
+            else
+            {
+                return format("%g / %d TB", usedRAM / 1_073_741_824.0, (totalRAM / 1_073_741_824).to!long);
+            }
+            assert(false);
+        }();
         ram.setText(text);
 
         // メモリ使用量をfractionの形で表示
