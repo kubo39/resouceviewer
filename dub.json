@@ -4,7 +4,7 @@
 		"kubo39"
 	],
 	"dependencies": {
-		"gtk-d:gtkd": "3.8.2",
+		"gtk-d:gtkd": "3.8.3",
 		"resusage": "0.2.8"
 	},
 	"description": "A minimal D application.",
