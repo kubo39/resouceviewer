@@ -1,8 +1,6 @@
 {
 	"name": "resource-viewer",
-	"authors": [
-		"kubo39"
-	],
+	"authors": ["Hiroki Noda"],
 	"dependencies": {
 		"gtk-d:gtkd": "3.8.5",
 		"resusage": "0.2.8"

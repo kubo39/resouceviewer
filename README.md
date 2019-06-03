@@ -11,4 +11,3 @@ $ git clone https://github.com/kubo39/resourceviewer
 $ cd resourceviewer
 $ dub run
 ```
-
